@@ -1,8 +1,8 @@
 package com.example.services
 
-import com.example.database.Account
-import com.example.database.AccountsDAO
-import com.example.models.CreateAccountDTO
+import com.example.models.Account
+import com.example.models.AccountsDAO
+import com.example.dtos.request.CreateAccountDTO
 
 interface CreateAccountsService {
     fun createAccount(accountToBeCreated: CreateAccountDTO): Account

@@ -1,7 +1,7 @@
-package com.example.routes
+package com.example.controllers
 
-import com.example.models.AccountDTO
-import com.example.models.CreateAccountDTO
+import com.example.dtos.response.AccountDTO
+import com.example.dtos.request.CreateAccountDTO
 import com.example.services.CreateAccountsService
 import com.example.services.FindAccountsService
 import io.ktor.http.*
@@ -19,7 +19,7 @@ fun Route.accountsRouting(findAccountsService: FindAccountsService, createAccoun
             val account = findAccountsService.findAccountById(id)
 
             if(account != null) {
-                val accountDTO = AccountDTO(id=account.id.value, name=account.name, document=account.document)
+                val accountDTO = AccountDTO(id=account.id, name=account.name, document=account.document)
                 call.respond(accountDTO)
             } else {
                 call.respond(HttpStatusCode.NotFound)
@@ -27,11 +27,9 @@ fun Route.accountsRouting(findAccountsService: FindAccountsService, createAccoun
         }
         post {
             val accountToBeCreated = call.receive<CreateAccountDTO>()
-
-            print(accountToBeCreated)
             val createdAccount = createAccountsService.createAccount(accountToBeCreated)
 
-            val accountDTO = AccountDTO(id = createdAccount.id.value, name = createdAccount.name, document = createdAccount.document)
+            val accountDTO = AccountDTO(id = createdAccount.id, name = createdAccount.name, document = createdAccount.document)
             call.respond(accountDTO)
         }
     }

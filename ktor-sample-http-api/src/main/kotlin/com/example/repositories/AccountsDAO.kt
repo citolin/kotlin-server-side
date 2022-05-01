@@ -1,23 +1,8 @@
-package com.example.database
+package com.example.models
 
-import org.jetbrains.exposed.dao.IntEntity
-import org.jetbrains.exposed.dao.IntEntityClass
-import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
-
-object Accounts : IntIdTable() {
-    val name = varchar("name", 50)
-    val document = char("document", length = 11)
-}
-
-class Account(id: EntityID<Int>): IntEntity(id) {
-    companion object: IntEntityClass<Account>(Accounts)
-
-    var name by Accounts.name
-    var document by Accounts.document
-}
 
 interface AccountsDAO {
     fun findAccountById(accountId: Int): Account?
@@ -32,24 +17,22 @@ class AccountsDatabaseDAO: AccountsDAO {
             password = "ZCE7PjK36nK5SZRc")
 
         transaction {
-            SchemaUtils.create(Accounts)
+            SchemaUtils.create(AccountsSchema)
         }
     }
 
     override fun findAccountById(accountId: Int): Account? {
         return transaction {
-            return@transaction Account.findById(accountId)
+            return@transaction AccountEntity.findById(accountId)?.toAccount()
         }
     }
 
     override fun createAccount(name: String, document: String): Account {
-        println(name)
-        println(document)
         return transaction {
-            return@transaction Account.new {
+            return@transaction AccountEntity.new {
                 this.name = name
                 this.document = document
-            }
+            }.toAccount()
         }
     }
 }

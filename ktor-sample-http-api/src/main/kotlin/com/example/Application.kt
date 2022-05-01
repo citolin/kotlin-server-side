@@ -1,10 +1,9 @@
 package com.example
 
-import com.example.database.AccountsDatabaseDAO
+import com.example.models.AccountsDatabaseDAO
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.example.plugins.*
-import com.example.services.CreateAccountsService
 import com.example.services.CreateAccountsServiceImpl
 import com.example.services.FindAccountsServiceImpl
 

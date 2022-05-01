@@ -1,7 +1,7 @@
 package com.example.services
 
-import com.example.database.Account
-import com.example.database.AccountsDAO
+import com.example.models.Account
+import com.example.models.AccountsDAO
 import org.postgresql.jdbc.PgResultSet.toInt
 
 interface FindAccountsService {
