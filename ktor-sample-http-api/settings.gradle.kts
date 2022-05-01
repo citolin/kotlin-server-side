@@ -1,1 +1,1 @@
-rootProject.name = "com.example.ktor-sample-http-api"
+rootProject.name = "br.com.ume.ktor-sample-http-api"

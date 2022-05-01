@@ -1,15 +1,17 @@
-package com.example.controllers
+package br.com.ume.controllers
 
-import com.example.dtos.response.AccountDTO
-import com.example.dtos.request.CreateAccountDTO
-import com.example.services.CreateAccountsService
-import com.example.services.FindAccountsService
+import br.com.ume.dtos.response.AccountDTO
+import br.com.ume.dtos.request.CreateAccountDTO
+import br.com.ume.services.CreateAccountsService
+import br.com.ume.services.FindAccountsService
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
+// TODO(lucas.citolin): Implement `orDie` methods and handle exceptions on middleware
+// TODO(lucas.citolin): Implement middleware validator for incoming DTOs
 fun Route.accountsRouting(findAccountsService: FindAccountsService, createAccountsService: CreateAccountsService) {
     route("/accounts") {
         get("{id?}") {

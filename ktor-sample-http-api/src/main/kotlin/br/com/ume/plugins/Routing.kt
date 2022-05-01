@@ -1,8 +1,8 @@
-package com.example.plugins
+package br.com.ume.plugins
 
-import com.example.controllers.accountsRouting
-import com.example.services.CreateAccountsService
-import com.example.services.FindAccountsService
+import br.com.ume.controllers.accountsRouting
+import br.com.ume.services.CreateAccountsService
+import br.com.ume.services.FindAccountsService
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
 

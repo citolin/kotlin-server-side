@@ -1,4 +1,4 @@
-package com.example.dtos.request
+package br.com.ume.dtos.request
 import kotlinx.serialization.Serializable
 
 @Serializable

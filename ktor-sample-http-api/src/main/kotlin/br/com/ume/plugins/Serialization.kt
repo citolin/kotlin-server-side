@@ -1,4 +1,4 @@
-package com.example.plugins
+package br.com.ume.plugins
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.plugins.*

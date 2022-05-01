@@ -1,9 +1,10 @@
-package com.example.services
+package br.com.ume.services
 
-import com.example.models.Account
-import com.example.models.AccountsDAO
+import br.com.ume.models.Account
+import br.com.ume.repositories.AccountsDAO
 import org.postgresql.jdbc.PgResultSet.toInt
 
+// TODO(lucas.citolin): Separate interface on another file
 interface FindAccountsService {
     fun findAccountById(accountId: String): Account?
 }

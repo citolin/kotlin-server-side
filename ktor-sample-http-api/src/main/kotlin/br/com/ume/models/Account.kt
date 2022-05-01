@@ -1,3 +1,3 @@
-package com.example.models
+package br.com.ume.models
 
 data class Account(val id: Int, val name: String, val document: String)

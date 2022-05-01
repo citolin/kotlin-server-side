@@ -1,9 +1,10 @@
-package com.example.services
+package br.com.ume.services
 
-import com.example.models.Account
-import com.example.models.AccountsDAO
-import com.example.dtos.request.CreateAccountDTO
+import br.com.ume.models.Account
+import br.com.ume.dtos.request.CreateAccountDTO
+import br.com.ume.repositories.AccountsDAO
 
+// TODO(lucas.citolin): Separate interface on another file
 interface CreateAccountsService {
     fun createAccount(accountToBeCreated: CreateAccountDTO): Account
 }

@@ -1,26 +1,16 @@
-package com.example.models
+package br.com.ume.repositories
 
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
+import br.com.ume.models.Account
 import org.jetbrains.exposed.sql.transactions.transaction
 
+// TODO(lucas.citolin): Structure repositories package
+// TODO(lucas.citolin): Separate interface on another file
 interface AccountsDAO {
     fun findAccountById(accountId: Int): Account?
     fun createAccount(name: String, document: String): Account
 }
 
 class AccountsDatabaseDAO: AccountsDAO {
-    constructor() {
-        Database.connect(url ="jdbc:postgresql://localhost:5432/datastoredev",
-            driver="org.postgresql.Driver",
-            user = "dev",
-            password = "ZCE7PjK36nK5SZRc")
-
-        transaction {
-            SchemaUtils.create(AccountsSchema)
-        }
-    }
-
     override fun findAccountById(accountId: Int): Account? {
         return transaction {
             return@transaction AccountEntity.findById(accountId)?.toAccount()
