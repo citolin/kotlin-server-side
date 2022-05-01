@@ -1,5 +1,6 @@
 package br.com.ume
 
+import br.com.ume.daos.accounts.AccountsApiDAO
 import io.ktor.server.application.*
 import br.com.ume.plugins.*
 import br.com.ume.repositories.DatabaseFactory
@@ -18,13 +19,17 @@ fun Application.module() {
     val dbHost = environment.config.propertyOrNull("ktor.database.host")?.getString() ?: ""
     val dbDatabase = environment.config.propertyOrNull("ktor.database.database")?.getString() ?: ""
 
+    val accountsBaseUrl = environment.config.propertyOrNull("ktor.accounts.baseUrl")?.getString() ?: ""
+
     // Setup
     val database = DatabaseFactory()
     database.connectAndMigrate(username = dbUsername, password = dbPassword, database = dbDatabase, host = dbHost )
 
     // Dependency Injection
     val transfersDao = TransfersDatabaseDAO()
-    val createTransferService = CreateTransferServiceImpl(transfersDao)
+    val accountsDAO = AccountsApiDAO(accountsBaseUrl)
+
+    val createTransferService = CreateTransferServiceImpl(transfersDao, accountsDAO)
 
     configureRouting(createTransferService)
     configureSerialization()

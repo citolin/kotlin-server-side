@@ -1,5 +1,6 @@
 package br.com.ume.controllers
 
+import br.com.ume.daos.accounts.AccountsException
 import br.com.ume.dtos.response.TransferDTO
 import br.com.ume.dtos.request.CreateTransferDTO
 import br.com.ume.services.CreateTransferService
@@ -14,15 +15,14 @@ fun Route.transfersRouting(createTransferService: CreateTransferService) {
     route("/transfers") {
         post {
             val transferToBeCreated = call.receive<CreateTransferDTO>()
-            val createdTransfer = createTransferService.createTransfer(transferToBeCreated)
 
-            val transferDTO = TransferDTO(
-                id = createdTransfer.id,
-                senderAccountId = createdTransfer.senderAccountId,
-                receiverAccountId = createdTransfer.receiverAccountId,
-                transferredValue = createdTransfer.transferredValue,
-                timestamp = createdTransfer.timestamp.toString())
-            call.respond(transferDTO)
+            try {
+                val createdTransfer = createTransferService.createTransfer(transferToBeCreated)
+                call.respond(createdTransfer.toDto())
+            } catch(accountsException: AccountsException) {
+                // TODO: Respond a JSON error
+                call.respond(accountsException.message.toString())
+            }
         }
     }
 }

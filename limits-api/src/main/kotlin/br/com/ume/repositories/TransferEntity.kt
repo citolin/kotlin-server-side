@@ -9,6 +9,7 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.datetime
 import java.time.ZoneOffset
 
+// TODO(lucas.citolin): don't use double for financial values
 internal object TransfersSchema : IntIdTable() {
     val timestamp = datetime("timestamp")
 
