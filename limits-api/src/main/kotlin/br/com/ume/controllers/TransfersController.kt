@@ -14,7 +14,11 @@ import io.ktor.server.routing.*
 fun Route.transfersRouting(createTransferService: CreateTransferService) {
     route("/transfers") {
         post {
+//            val - const
+//            var - pode mudar de valor
             val transferToBeCreated = call.receive<CreateTransferDTO>()
+
+//            DTO -> MODEL -> ENTITY
 
             try {
                 val createdTransfer = createTransferService.createTransfer(transferToBeCreated)

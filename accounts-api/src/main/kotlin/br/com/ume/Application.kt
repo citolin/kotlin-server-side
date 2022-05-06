@@ -1,5 +1,7 @@
 package br.com.ume
 
+import br.com.ume.controllers.AccountsGRPCController
+import br.com.ume.grpc.GRPCServerFactory
 import br.com.ume.plugins.configureRouting
 import br.com.ume.plugins.configureSerialization
 import br.com.ume.repositories.AccountsDatabaseDAO
@@ -19,6 +21,8 @@ fun Application.module() {
     val dbHost = environment.config.propertyOrNull("ktor.database.host")?.getString() ?: ""
     val dbDatabase = environment.config.propertyOrNull("ktor.database.database")?.getString() ?: ""
 
+    val grpcServerPort = environment.config.propertyOrNull("ktor.grpcServer.port")?.getString() ?: ""
+
     // Setup
     val database = DatabaseFactory()
     database.connectAndMigrate(username = dbUsername, password = dbPassword, database = dbDatabase, host = dbHost )
@@ -27,7 +31,12 @@ fun Application.module() {
     val accountsDao = AccountsDatabaseDAO()
     val findAccountsService = FindAccountsServiceImpl(accountsDao)
     val createAccountsService = CreateAccountsServiceImpl(accountsDao)
+    val accountsGRPCController = AccountsGRPCController(findAccountsService, createAccountsService)
 
     configureRouting(findAccountsService, createAccountsService)
     configureSerialization()
+
+    // Start gRPC server
+    val server = GRPCServerFactory(grpcServerPort.toInt(), accountsGRPCController)
+    server.start()
 }

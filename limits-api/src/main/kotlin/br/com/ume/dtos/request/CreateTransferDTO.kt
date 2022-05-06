@@ -5,4 +5,3 @@ import kotlinx.serialization.Serializable
 data class CreateTransferDTO(val senderAccountId: Int,
                              val receiverAccountId: Int,
                              val transferredValue: Double)
-

@@ -14,7 +14,7 @@ interface TransfersDAO {
     fun createTransfer(timestamp: Instant, senderAccountId: Int, receiverAccountId: Int, transferredValue: Double): Transfer
 }
 
-class TransfersDatabaseDAO: TransfersDAO {
+class TransfersDatabaseDAO:  TransfersDAO {
     override fun findTransfersBySenderAccountId(senderAccountId: Int): Transfer? {
         return transaction {
             return@transaction TransferEntity.find { TransfersSchema.senderAccountId eq senderAccountId }.first()
