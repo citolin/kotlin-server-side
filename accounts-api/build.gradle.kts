@@ -1,4 +1,4 @@
-import com.google.protobuf.gradle.*
+//import com.google.protobuf.gradle.*
 import org.apache.tools.ant.filters.ReplaceTokens
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -17,7 +17,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
         id("org.jetbrains.kotlin.plugin.serialization") version "1.6.21"
 //  gRPC required
-    id("com.google.protobuf") version "0.8.15"
+//    id("com.google.protobuf") version "0.8.15"
     idea
 }
 
@@ -25,15 +25,15 @@ group = "br.com.ume"
 version = "0.0.1"
 
 // gRPC required: exclude already created protos on build
-tasks {
-    withType<Copy> {
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
-
-    copy {
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
-}
+//tasks {
+//    withType<Copy> {
+//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    }
+//
+//    copy {
+//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    }
+//}
 
 application {
     mainClass.set("br.com.ume.ApplicationKt")
@@ -79,45 +79,45 @@ dependencies {
 }
 
 // gRPC required
-sourceSets {
-    main {
-        proto {
-            srcDir("src/main/proto")
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        proto {
+//            srcDir("src/main/proto")
+//        }
+//    }
+//}
 
 // gRPC required
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:$protobuf_version"
-    }
-    plugins {
-        id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:$grpc_version"
-        }
-        id("grpckt") {
-            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpc_kotlin_version:jdk7@jar"
-        }
-    }
-    generateProtoTasks {
-        all().forEach {
-            it.plugins {
-                id("grpc")
-                id("grpckt")
-            }
-            it.builtins {
-                id("kotlin")
-            }
-        }
-    }
-}
-
-// gRPC required
-idea {
-    module {
-        sourceDirs.plusAssign(file("${projectDir}/build/generated/source/proto/main/kotlin"))
-        sourceDirs.plusAssign(file("${projectDir}/build/generated/source/proto/main/grpckt"))
-    }
-}
-
+//protobuf {
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:$protobuf_version"
+//    }
+//    plugins {
+//        id("grpc") {
+//            artifact = "io.grpc:protoc-gen-grpc-java:$grpc_version"
+//        }
+//        id("grpckt") {
+//            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpc_kotlin_version:jdk7@jar"
+//        }
+//    }
+//    generateProtoTasks {
+//        all().forEach {
+//            it.plugins {
+//                id("grpc")
+//                id("grpckt")
+//            }
+//            it.builtins {
+//                id("kotlin")
+//            }
+//        }
+//    }
+//}
+//
+//// gRPC required
+//idea {
+//    module {
+//        sourceDirs.plusAssign(file("${projectDir}/build/generated/source/proto/main/kotlin"))
+//        sourceDirs.plusAssign(file("${projectDir}/build/generated/source/proto/main/grpckt"))
+//    }
+//}
+//

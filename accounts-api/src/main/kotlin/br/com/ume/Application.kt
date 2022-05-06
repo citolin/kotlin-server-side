@@ -1,7 +1,7 @@
 package br.com.ume
 
-import br.com.ume.controllers.AccountsGRPCController
-import br.com.ume.grpc.GRPCServerFactory
+//import br.com.ume.controllers.AccountsGRPCController
+//import br.com.ume.grpc.GRPCServerFactory
 import br.com.ume.plugins.configureRouting
 import br.com.ume.plugins.configureSerialization
 import br.com.ume.repositories.AccountsDatabaseDAO
@@ -31,12 +31,12 @@ fun Application.module() {
     val accountsDao = AccountsDatabaseDAO()
     val findAccountsService = FindAccountsServiceImpl(accountsDao)
     val createAccountsService = CreateAccountsServiceImpl(accountsDao)
-    val accountsGRPCController = AccountsGRPCController(findAccountsService, createAccountsService)
+//    val accountsGRPCController = AccountsGRPCController(findAccountsService, createAccountsService)
 
     configureRouting(findAccountsService, createAccountsService)
     configureSerialization()
 
     // Start gRPC server
-    val server = GRPCServerFactory(grpcServerPort.toInt(), accountsGRPCController)
-    server.start()
+//    val server = GRPCServerFactory(grpcServerPort.toInt(), accountsGRPCController)
+//    server.start()
 }
