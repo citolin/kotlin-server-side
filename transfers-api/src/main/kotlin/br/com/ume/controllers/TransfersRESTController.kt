@@ -1,8 +1,10 @@
 package br.com.ume.controllers
 
-import br.com.ume.daos.accounts.AccountsException
+import br.com.ume.exceptions.AccountsException
 import br.com.ume.dtos.request.CreateTransferDTO
+import br.com.ume.exceptions.TransfersException
 import br.com.ume.services.CreateTransferService
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -15,13 +17,14 @@ fun Route.transfersRouting(createTransferService: CreateTransferService) {
         post {
             val transferToBeCreated = call.receive<CreateTransferDTO>()
 
-            println("Routing")
             try {
                 val createdTransfer = createTransferService.createTransfer(transferToBeCreated)
                 call.respond(createdTransfer.toDto())
-            } catch(accountsException: AccountsException) {
+            } catch(exception: AccountsException) {
                 // TODO: Respond a JSON error
-                call.respond(accountsException.message.toString())
+                call.respond(HttpStatusCode.NotFound, exception.message.toString())
+            } catch(exception: TransfersException) {
+                call.respond(HttpStatusCode.Conflict, exception.message.toString())
             }
         }
     }

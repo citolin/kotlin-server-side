@@ -7,12 +7,12 @@ data class Transfer(val id: Int,
                     val timestamp: Instant,
                     val senderAccountId: Int,
                     val receiverAccountId: Int,
-                    val transferredValue: Double) {
+                    val transferValue: Double) {
 
     fun toDto(): TransferDTO = TransferDTO(
         id = this.id,
         senderAccountId = this.senderAccountId,
         receiverAccountId = this.receiverAccountId,
-        transferredValue = this.transferredValue,
+        transferValue = this.transferValue,
         timestamp = this.timestamp.toString())
 }

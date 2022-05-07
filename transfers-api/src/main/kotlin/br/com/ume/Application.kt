@@ -5,7 +5,7 @@ import br.com.ume.daos.accounts.AccountsRestDao
 import io.ktor.server.application.*
 import br.com.ume.plugins.*
 import br.com.ume.repositories.DatabaseFactory
-import br.com.ume.repositories.TransfersDatabaseDAO
+import br.com.ume.repositories.TransfersDatabaseDao
 import br.com.ume.services.CreateTransferServiceImpl
 import io.grpc.ManagedChannelBuilder
 
@@ -31,7 +31,7 @@ fun Application.module() {
     val grpcChannel = ManagedChannelBuilder.forAddress(accountsGrpcHost, accountsGrpcPort.toInt()).usePlaintext().build()
 
     // Dependency Injection
-    val transfersDao = TransfersDatabaseDAO()
+    val transfersDao = TransfersDatabaseDao()
     println("Using GRPC? ${shouldAccountsUseGrpc.toBoolean()}")
     val accountsDao = if(shouldAccountsUseGrpc.toBoolean()) AccountsGrpcDao(grpcChannel) else AccountsRestDao(accountsRestBaseUrl)
 

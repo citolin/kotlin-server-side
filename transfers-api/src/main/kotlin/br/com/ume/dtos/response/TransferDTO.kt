@@ -6,5 +6,5 @@ data class TransferDTO(val id: Int,
                        val timestamp: String,
                        val senderAccountId: Int,
                        val receiverAccountId: Int,
-                       val transferredValue: Double)
+                       val transferValue: Double)
 

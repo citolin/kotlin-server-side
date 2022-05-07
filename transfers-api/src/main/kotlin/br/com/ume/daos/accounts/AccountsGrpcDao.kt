@@ -16,7 +16,7 @@ class AccountsGrpcDao(private val channel: ManagedChannel): AccountsDao, Closeab
         }
 
         val response = stub.getAccountById(request)
-        return AccountDTO(id = response.id.toInt(), name = response.name.toString(), document = response.document.toString())
+        return AccountDTO(id = response.id.toInt(), name = response.name, document = response.document, value = response.value)
     }
 
     override fun close() {

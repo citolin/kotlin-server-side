@@ -1,4 +1,4 @@
-package br.com.ume.daos.accounts
+package br.com.ume.exceptions
 
 enum class AccountsExceptionCodes {
     SENDER_ACCOUNT_NOT_FOUND,
