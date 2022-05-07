@@ -1,8 +1,7 @@
 package br.com.ume.daos.accounts
 
-import accounts.AccountsGrpcKt
-import accounts.getAccountByIdRequest
-import accounts.GetAccountByIdRequestKt
+import br.com.ume.grpc.proto.accounts.AccountsGrpcKt
+import br.com.ume.grpc.proto.accounts.getAccountByIdRequest
 
 import io.grpc.ManagedChannel
 import java.io.Closeable

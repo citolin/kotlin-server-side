@@ -67,6 +67,11 @@ private static final long serialVersionUID = 0L;
             document_ = s;
             break;
           }
+          case 33: {
+
+            value_ = input.readDouble();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -186,6 +191,17 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int VALUE_FIELD_NUMBER = 4;
+  private double value_;
+  /**
+   * <code>double value = 4;</code>
+   * @return The value.
+   */
+  @java.lang.Override
+  public double getValue() {
+    return value_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -209,6 +225,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(document_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, document_);
     }
+    if (java.lang.Double.doubleToRawLongBits(value_) != 0) {
+      output.writeDouble(4, value_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -227,6 +246,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(document_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, document_);
+    }
+    if (java.lang.Double.doubleToRawLongBits(value_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(4, value_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -249,6 +272,9 @@ private static final long serialVersionUID = 0L;
         .equals(other.getName())) return false;
     if (!getDocument()
         .equals(other.getDocument())) return false;
+    if (java.lang.Double.doubleToLongBits(getValue())
+        != java.lang.Double.doubleToLongBits(
+            other.getValue())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -267,6 +293,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + DOCUMENT_FIELD_NUMBER;
     hash = (53 * hash) + getDocument().hashCode();
+    hash = (37 * hash) + VALUE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getValue()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -406,6 +435,8 @@ private static final long serialVersionUID = 0L;
 
       document_ = "";
 
+      value_ = 0D;
+
       return this;
     }
 
@@ -435,6 +466,7 @@ private static final long serialVersionUID = 0L;
       result.id_ = id_;
       result.name_ = name_;
       result.document_ = document_;
+      result.value_ = value_;
       onBuilt();
       return result;
     }
@@ -493,6 +525,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getDocument().isEmpty()) {
         document_ = other.document_;
         onChanged();
+      }
+      if (other.getValue() != 0D) {
+        setValue(other.getValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -702,6 +737,37 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       document_ = value;
+      onChanged();
+      return this;
+    }
+
+    private double value_ ;
+    /**
+     * <code>double value = 4;</code>
+     * @return The value.
+     */
+    @java.lang.Override
+    public double getValue() {
+      return value_;
+    }
+    /**
+     * <code>double value = 4;</code>
+     * @param value The value to set.
+     * @return This builder for chaining.
+     */
+    public Builder setValue(double value) {
+      
+      value_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>double value = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearValue() {
+      
+      value_ = 0D;
       onChanged();
       return this;
     }

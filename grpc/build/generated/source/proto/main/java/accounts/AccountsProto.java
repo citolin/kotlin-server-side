@@ -39,15 +39,16 @@ public final class AccountsProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\016accounts.proto\022\010accounts\"#\n\025GetAccount" +
-      "ByIdRequest\022\n\n\002id\030\001 \001(\t\"6\n\024CreateAccount" +
-      "Request\022\014\n\004name\030\002 \001(\t\022\020\n\010document\030\003 \001(\t\"" +
-      "=\n\017AccountResponse\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002" +
-      " \001(\t\022\020\n\010document\030\003 \001(\t2\250\001\n\010Accounts\022N\n\016g" +
-      "etAccountById\022\037.accounts.GetAccountByIdR" +
-      "equest\032\031.accounts.AccountResponse\"\000\022L\n\rc" +
-      "reateAccount\022\036.accounts.CreateAccountReq" +
-      "uest\032\031.accounts.AccountResponse\"\000B\033\n\010acc" +
-      "ountsB\rAccountsProtoP\001b\006proto3"
+      "ByIdRequest\022\n\n\002id\030\001 \001(\t\"E\n\024CreateAccount" +
+      "Request\022\014\n\004name\030\002 \001(\t\022\020\n\010document\030\003 \001(\t\022" +
+      "\r\n\005value\030\004 \001(\001\"L\n\017AccountResponse\022\n\n\002id\030" +
+      "\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\020\n\010document\030\003 \001(\t\022\r\n" +
+      "\005value\030\004 \001(\0012\250\001\n\010Accounts\022N\n\016getAccountB" +
+      "yId\022\037.accounts.GetAccountByIdRequest\032\031.a" +
+      "ccounts.AccountResponse\"\000\022L\n\rcreateAccou" +
+      "nt\022\036.accounts.CreateAccountRequest\032\031.acc" +
+      "ounts.AccountResponse\"\000B\033\n\010accountsB\rAcc" +
+      "ountsProtoP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -64,13 +65,13 @@ public final class AccountsProto {
     internal_static_accounts_CreateAccountRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_accounts_CreateAccountRequest_descriptor,
-        new java.lang.String[] { "Name", "Document", });
+        new java.lang.String[] { "Name", "Document", "Value", });
     internal_static_accounts_AccountResponse_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_accounts_AccountResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_accounts_AccountResponse_descriptor,
-        new java.lang.String[] { "Id", "Name", "Document", });
+        new java.lang.String[] { "Id", "Name", "Document", "Value", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -55,6 +55,23 @@ public object CreateAccountRequestKt {
     public fun clearDocument() {
       _builder.clearDocument()
     }
+
+    /**
+     * <code>double value = 4;</code>
+     */
+    public var value: kotlin.Double
+      @JvmName("getValue")
+      get() = _builder.getValue()
+      @JvmName("setValue")
+      set(value) {
+        _builder.setValue(value)
+      }
+    /**
+     * <code>double value = 4;</code>
+     */
+    public fun clearValue() {
+      _builder.clearValue()
+    }
   }
 }
 @kotlin.jvm.JvmSynthetic

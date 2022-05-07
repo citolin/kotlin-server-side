@@ -4,7 +4,7 @@ import br.com.ume.grpc.GRPCServerFactory
 import br.com.ume.controllers.AccountsGRPCController
 import br.com.ume.plugins.configureRouting
 import br.com.ume.plugins.configureSerialization
-import br.com.ume.repositories.AccountsDatabaseDAO
+import br.com.ume.repositories.AccountsDatabaseDao
 import io.ktor.server.netty.*
 import br.com.ume.repositories.DatabaseFactory
 import br.com.ume.services.CreateAccountsServiceImpl
@@ -27,7 +27,7 @@ fun Application.module() {
     database.connectAndMigrate(username = dbUsername, password = dbPassword, database = dbDatabase, host = dbHost )
 
     // Dependency Injection
-    val accountsDao = AccountsDatabaseDAO()
+    val accountsDao = AccountsDatabaseDao()
     // -- Use Cases
     val findAccountsService = FindAccountsServiceImpl(accountsDao)
     val createAccountsService = CreateAccountsServiceImpl(accountsDao)

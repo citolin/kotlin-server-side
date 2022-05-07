@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "accounts";
+option java_package = "br.com.ume.grpc.proto.accounts";
 option java_outer_classname = "AccountsProto";
 
 package accounts;
@@ -18,10 +18,12 @@ message GetAccountByIdRequest {
 message CreateAccountRequest {
   string name = 2;
   string document = 3;
+  double value = 4;
 }
 
 message AccountResponse {
   int64 id = 1;
   string name = 2;
   string document = 3;
+  double value = 4;
 }

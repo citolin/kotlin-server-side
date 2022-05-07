@@ -6,7 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CreateAccountDTO(val name: String,
-                            val document: String): DTOValidator {
+                            val document: String,
+                            val value: Double): DTOValidator {
 
     override fun validate(): ValidatorResponse {
         val errors = ArrayList<String>()

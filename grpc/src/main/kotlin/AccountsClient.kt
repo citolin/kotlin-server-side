@@ -1,6 +1,6 @@
-import accounts.AccountsGrpcKt
-import accounts.createAccountRequest
-import accounts.getAccountByIdRequest
+import br.com.ume.grpc.proto.accounts.AccountsGrpcKt
+import br.com.ume.grpc.proto.accounts.createAccountRequest
+import br.com.ume.grpc.proto.accounts.getAccountByIdRequest
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import java.io.Closeable
@@ -9,13 +9,14 @@ import java.util.concurrent.TimeUnit
 class AccountsClient(private val channel: ManagedChannel) : Closeable {
     private val stub: AccountsGrpcKt.AccountsCoroutineStub = AccountsGrpcKt.AccountsCoroutineStub(channel)
 
-    suspend fun createAccount(name: String, document: String) {
+    suspend fun createAccount(name: String, document: String, value: Double) {
         val request = createAccountRequest {
             this.name = name
             this.document = document
+            this.value = value
         }
         val response = stub.createAccount(request)
-        println("Received Name: ${response.name} Received document: ${response.document}")
+        println("Received Name: ${response.name} Received document: ${response.document} Value: ${response.value}")
     }
 
     suspend fun getAccountById(id: String) {
@@ -43,6 +44,6 @@ suspend fun main(args: Array<String>) {
     val client = AccountsClient(channel)
 
     val user = args.singleOrNull() ?: "1"
-    client.getAccountById(user)
-    client.createAccount(name = "lu", document = "11111111111")
+    client.getAccountById("1")
+    client.createAccount(name = "lu", document = "11111111112", value = 100.1)
 }
