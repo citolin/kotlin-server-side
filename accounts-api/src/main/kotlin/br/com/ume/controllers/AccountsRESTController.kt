@@ -4,8 +4,11 @@ import br.com.ume.dtos.response.AccountDTO
 import br.com.ume.dtos.request.CreateAccountDTO
 import br.com.ume.services.CreateAccountsService
 import br.com.ume.services.FindAccountsService
+import io.grpc.Status
+import io.grpc.StatusException
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -29,6 +32,10 @@ fun Route.accountsRouting(findAccountsService: FindAccountsService, createAccoun
         }
         post {
             val accountToBeCreated = call.receive<CreateAccountDTO>()
+
+            val dtoValidation = accountToBeCreated.validate()
+            if(dtoValidation.error) throw BadRequestException(dtoValidation.errors.toString())
+
             val createdAccount = createAccountsService.createAccount(accountToBeCreated)
 
             val accountDTO = AccountDTO(id = createdAccount.id, name = createdAccount.name, document = createdAccount.document)

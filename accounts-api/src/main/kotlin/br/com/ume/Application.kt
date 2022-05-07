@@ -1,7 +1,7 @@
 package br.com.ume
 
-//import br.com.ume.controllers.AccountsGRPCController
-//import br.com.ume.grpc.GRPCServerFactory
+import br.com.ume.grpc.GRPCServerFactory
+import br.com.ume.controllers.AccountsGRPCController
 import br.com.ume.plugins.configureRouting
 import br.com.ume.plugins.configureSerialization
 import br.com.ume.repositories.AccountsDatabaseDAO
@@ -14,7 +14,6 @@ import io.ktor.server.application.*
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module() {
-    // Configs
     // TODO(lucas.citolin): Isolate and use separated config loader from framework
     val dbUsername = environment.config.propertyOrNull("ktor.database.username")?.getString() ?: ""
     val dbPassword = environment.config.propertyOrNull("ktor.database.password")?.getString() ?: ""
@@ -29,14 +28,16 @@ fun Application.module() {
 
     // Dependency Injection
     val accountsDao = AccountsDatabaseDAO()
+    // -- Use Cases
     val findAccountsService = FindAccountsServiceImpl(accountsDao)
     val createAccountsService = CreateAccountsServiceImpl(accountsDao)
-//    val accountsGRPCController = AccountsGRPCController(findAccountsService, createAccountsService)
+    // -- GRPC Controller
+    val accountsGRPCController = AccountsGRPCController(findAccountsService, createAccountsService)
 
     configureRouting(findAccountsService, createAccountsService)
     configureSerialization()
 
     // Start gRPC server
-//    val server = GRPCServerFactory(grpcServerPort.toInt(), accountsGRPCController)
-//    server.start()
+    val server = GRPCServerFactory(grpcServerPort.toInt(), accountsGRPCController)
+    server.start()
 }
