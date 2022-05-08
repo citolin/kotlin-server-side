@@ -45,6 +45,37 @@ public final class AccountsGrpc {
     return getGetAccountByIdMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest,
+      br.com.ume.grpc.proto.accounts.AccountResponse> getGetAccountByDocumentMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getAccountByDocument",
+      requestType = br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest.class,
+      responseType = br.com.ume.grpc.proto.accounts.AccountResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest,
+      br.com.ume.grpc.proto.accounts.AccountResponse> getGetAccountByDocumentMethod() {
+    io.grpc.MethodDescriptor<br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest, br.com.ume.grpc.proto.accounts.AccountResponse> getGetAccountByDocumentMethod;
+    if ((getGetAccountByDocumentMethod = AccountsGrpc.getGetAccountByDocumentMethod) == null) {
+      synchronized (AccountsGrpc.class) {
+        if ((getGetAccountByDocumentMethod = AccountsGrpc.getGetAccountByDocumentMethod) == null) {
+          AccountsGrpc.getGetAccountByDocumentMethod = getGetAccountByDocumentMethod =
+              io.grpc.MethodDescriptor.<br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest, br.com.ume.grpc.proto.accounts.AccountResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getAccountByDocument"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.ume.grpc.proto.accounts.AccountResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new AccountsMethodDescriptorSupplier("getAccountByDocument"))
+              .build();
+        }
+      }
+    }
+    return getGetAccountByDocumentMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<br.com.ume.grpc.proto.accounts.CreateAccountRequest,
       br.com.ume.grpc.proto.accounts.AccountResponse> getCreateAccountMethod;
 
@@ -133,6 +164,13 @@ public final class AccountsGrpc {
 
     /**
      */
+    public void getAccountByDocument(br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest request,
+        io.grpc.stub.StreamObserver<br.com.ume.grpc.proto.accounts.AccountResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAccountByDocumentMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void createAccount(br.com.ume.grpc.proto.accounts.CreateAccountRequest request,
         io.grpc.stub.StreamObserver<br.com.ume.grpc.proto.accounts.AccountResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateAccountMethod(), responseObserver);
@@ -147,6 +185,13 @@ public final class AccountsGrpc {
                 br.com.ume.grpc.proto.accounts.GetAccountByIdRequest,
                 br.com.ume.grpc.proto.accounts.AccountResponse>(
                   this, METHODID_GET_ACCOUNT_BY_ID)))
+          .addMethod(
+            getGetAccountByDocumentMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest,
+                br.com.ume.grpc.proto.accounts.AccountResponse>(
+                  this, METHODID_GET_ACCOUNT_BY_DOCUMENT)))
           .addMethod(
             getCreateAccountMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -182,6 +227,14 @@ public final class AccountsGrpc {
 
     /**
      */
+    public void getAccountByDocument(br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest request,
+        io.grpc.stub.StreamObserver<br.com.ume.grpc.proto.accounts.AccountResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetAccountByDocumentMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void createAccount(br.com.ume.grpc.proto.accounts.CreateAccountRequest request,
         io.grpc.stub.StreamObserver<br.com.ume.grpc.proto.accounts.AccountResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -208,6 +261,13 @@ public final class AccountsGrpc {
     public br.com.ume.grpc.proto.accounts.AccountResponse getAccountById(br.com.ume.grpc.proto.accounts.GetAccountByIdRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetAccountByIdMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public br.com.ume.grpc.proto.accounts.AccountResponse getAccountByDocument(br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetAccountByDocumentMethod(), getCallOptions(), request);
     }
 
     /**
@@ -242,6 +302,14 @@ public final class AccountsGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.ume.grpc.proto.accounts.AccountResponse> getAccountByDocument(
+        br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetAccountByDocumentMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<br.com.ume.grpc.proto.accounts.AccountResponse> createAccount(
         br.com.ume.grpc.proto.accounts.CreateAccountRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -250,7 +318,8 @@ public final class AccountsGrpc {
   }
 
   private static final int METHODID_GET_ACCOUNT_BY_ID = 0;
-  private static final int METHODID_CREATE_ACCOUNT = 1;
+  private static final int METHODID_GET_ACCOUNT_BY_DOCUMENT = 1;
+  private static final int METHODID_CREATE_ACCOUNT = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -271,6 +340,10 @@ public final class AccountsGrpc {
       switch (methodId) {
         case METHODID_GET_ACCOUNT_BY_ID:
           serviceImpl.getAccountById((br.com.ume.grpc.proto.accounts.GetAccountByIdRequest) request,
+              (io.grpc.stub.StreamObserver<br.com.ume.grpc.proto.accounts.AccountResponse>) responseObserver);
+          break;
+        case METHODID_GET_ACCOUNT_BY_DOCUMENT:
+          serviceImpl.getAccountByDocument((br.com.ume.grpc.proto.accounts.GetAccountByDocumentRequest) request,
               (io.grpc.stub.StreamObserver<br.com.ume.grpc.proto.accounts.AccountResponse>) responseObserver);
           break;
         case METHODID_CREATE_ACCOUNT:
@@ -339,6 +412,7 @@ public final class AccountsGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new AccountsFileDescriptorSupplier())
               .addMethod(getGetAccountByIdMethod())
+              .addMethod(getGetAccountByDocumentMethod())
               .addMethod(getCreateAccountMethod())
               .build();
         }

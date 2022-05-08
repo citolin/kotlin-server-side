@@ -1,7 +1,7 @@
-import accounts.AccountResponse
-import accounts.AccountsGrpcKt
-import accounts.CreateAccountRequest
-import accounts.GetAccountByIdRequest
+import br.com.ume.grpc.proto.accounts.AccountResponse
+import br.com.ume.grpc.proto.accounts.AccountsGrpcKt
+import br.com.ume.grpc.proto.accounts.CreateAccountRequest
+import br.com.ume.grpc.proto.accounts.GetAccountByIdRequest
 import io.grpc.Server
 import io.grpc.ServerBuilder
 

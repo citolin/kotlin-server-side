@@ -2,9 +2,10 @@ package br.com.ume
 
 import br.com.ume.grpc.GRPCServerFactory
 import br.com.ume.controllers.AccountsGRPCController
+import br.com.ume.daos.digital_account.DigitalAccountsGrpcDao
 import br.com.ume.plugins.configureRouting
 import br.com.ume.plugins.configureSerialization
-import br.com.ume.repositories.AccountsDatabaseDao
+import br.com.ume.repositories.accounts.AccountsDatabaseDao
 import io.ktor.server.netty.*
 import br.com.ume.repositories.DatabaseFactory
 import br.com.ume.services.CreateAccountsServiceImpl
@@ -20,6 +21,8 @@ fun Application.module() {
     val dbHost = environment.config.propertyOrNull("ktor.database.host")?.getString() ?: ""
     val dbDatabase = environment.config.propertyOrNull("ktor.database.database")?.getString() ?: ""
 
+    val digitalAccountsGrpcHost = environment.config.propertyOrNull("ktor.digitalAccounts.grpc.host")?.getString() ?: ""
+    val digitalAccountsGrpcPort = environment.config.propertyOrNull("ktor.digitalAccounts.grpc.port")?.getString() ?: ""
     val grpcServerPort = environment.config.propertyOrNull("ktor.grpcServer.port")?.getString() ?: ""
 
     // Setup
@@ -28,9 +31,10 @@ fun Application.module() {
 
     // Dependency Injection
     val accountsDao = AccountsDatabaseDao()
+    val digitalAccountsDao = DigitalAccountsGrpcDao(digitalAccountsGrpcHost, digitalAccountsGrpcPort.toInt())
     // -- Use Cases
     val findAccountsService = FindAccountsServiceImpl(accountsDao)
-    val createAccountsService = CreateAccountsServiceImpl(accountsDao)
+    val createAccountsService = CreateAccountsServiceImpl(accountsDao, digitalAccountsDao)
     // -- GRPC Controller
     val accountsGRPCController = AccountsGRPCController(findAccountsService, createAccountsService)
 

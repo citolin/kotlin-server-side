@@ -36,10 +36,4 @@ public interface AccountResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getDocumentBytes();
-
-  /**
-   * <code>double value = 4;</code>
-   * @return The value.
-   */
-  double getValue();
 }

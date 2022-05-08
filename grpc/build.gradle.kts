@@ -23,7 +23,7 @@ repositories {
 
 tasks {
     withType<Copy> {
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 }
 

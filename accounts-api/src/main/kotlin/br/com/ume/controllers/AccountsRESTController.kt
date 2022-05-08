@@ -16,6 +16,7 @@ import io.ktor.server.routing.*
 
 // TODO(lucas.citolin): Implement `orDie` methods and handle exceptions on middleware
 // TODO(lucas.citolin): Implement middleware validator for incoming DTOs
+// TODO(lucas.citolin): Implement exception middleware
 fun Route.accountsRouting(findAccountsService: FindAccountsService, createAccountsService: CreateAccountsService) {
     route("/accounts") {
         get("{id?}") {

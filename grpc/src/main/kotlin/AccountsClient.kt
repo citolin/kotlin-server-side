@@ -16,7 +16,7 @@ class AccountsClient(private val channel: ManagedChannel) : Closeable {
             this.value = value
         }
         val response = stub.createAccount(request)
-        println("Received Name: ${response.name} Received document: ${response.document} Value: ${response.value}")
+        println("Received Name: ${response.name} Received document: ${response.document}")
     }
 
     suspend fun getAccountById(id: String) {

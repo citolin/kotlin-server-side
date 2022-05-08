@@ -1,5 +1,6 @@
 package br.com.ume.repositories
 
+import br.com.ume.repositories.accounts.AccountsSchema
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction

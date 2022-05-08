@@ -39,6 +39,10 @@ object AccountsGrpcKt {
     @JvmStatic
     get() = AccountsGrpc.getGetAccountByIdMethod()
 
+  val getAccountByDocumentMethod: MethodDescriptor<GetAccountByDocumentRequest, AccountResponse>
+    @JvmStatic
+    get() = AccountsGrpc.getGetAccountByDocumentMethod()
+
   val createAccountMethod: MethodDescriptor<CreateAccountRequest, AccountResponse>
     @JvmStatic
     get() = AccountsGrpc.getCreateAccountMethod()
@@ -86,6 +90,26 @@ object AccountsGrpcKt {
      *
      * @return The single response from the server.
      */
+    suspend fun getAccountByDocument(request: GetAccountByDocumentRequest, headers: Metadata =
+        Metadata()): AccountResponse = unaryRpc(
+      channel,
+      AccountsGrpc.getGetAccountByDocumentMethod(),
+      request,
+      callOptions,
+      headers
+    )
+    /**
+     * Executes this RPC and returns the response message, suspending until the RPC completes
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
+     * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
+     * with the corresponding exception as a cause.
+     *
+     * @param request The request message to send to the server.
+     *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
+     * @return The single response from the server.
+     */
     suspend fun createAccount(request: CreateAccountRequest, headers: Metadata = Metadata()):
         AccountResponse = unaryRpc(
       channel,
@@ -116,6 +140,21 @@ object AccountsGrpcKt {
         StatusException(UNIMPLEMENTED.withDescription("Method accounts.Accounts.getAccountById is unimplemented"))
 
     /**
+     * Returns the response to an RPC for accounts.Accounts.getAccountByDocument.
+     *
+     * If this method fails with a [StatusException], the RPC will fail with the corresponding
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
+     * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
+     * fail with `Status.UNKNOWN` with the exception as a cause.
+     *
+     * @param request The request from the client.
+     */
+    open suspend fun getAccountByDocument(request: GetAccountByDocumentRequest): AccountResponse =
+        throw
+        StatusException(UNIMPLEMENTED.withDescription("Method accounts.Accounts.getAccountByDocument is unimplemented"))
+
+    /**
      * Returns the response to an RPC for accounts.Accounts.createAccount.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
@@ -134,6 +173,11 @@ object AccountsGrpcKt {
       context = this.context,
       descriptor = AccountsGrpc.getGetAccountByIdMethod(),
       implementation = ::getAccountById
+    ))
+      .addMethod(unaryServerMethodDefinition(
+      context = this.context,
+      descriptor = AccountsGrpc.getGetAccountByDocumentMethod(),
+      implementation = ::getAccountByDocument
     ))
       .addMethod(unaryServerMethodDefinition(
       context = this.context,

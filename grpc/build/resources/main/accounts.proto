@@ -1,4 +1,5 @@
 syntax = "proto3";
+//import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
 option java_package = "br.com.ume.grpc.proto.accounts";
@@ -8,11 +9,17 @@ package accounts;
 
 service Accounts {
   rpc getAccountById (GetAccountByIdRequest) returns (AccountResponse) {}
+  rpc getAccountByDocument (GetAccountByDocumentRequest) returns (AccountResponse) {}
+
   rpc createAccount (CreateAccountRequest) returns (AccountResponse) {}
 }
 
 message GetAccountByIdRequest {
   string id = 1;
+}
+
+message GetAccountByDocumentRequest {
+  string document = 1;
 }
 
 message CreateAccountRequest {
@@ -25,5 +32,4 @@ message AccountResponse {
   int64 id = 1;
   string name = 2;
   string document = 3;
-  double value = 4;
 }
