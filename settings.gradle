@@ -1,2 +1,2 @@
-rootProject.name = "basic-multiproject"
-include("accounts-api", "grpc2")
+rootProject.name = "ume-monorepo"
+include("accounts-api", "grpc", "digital-account-api")
